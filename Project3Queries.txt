@@ -1,0 +1,39 @@
+Project 3 Queries: Prashant Robinson
+
+/* Query 1 */
+SELECT MediaType.Name,
+       count(Track.MediaTypeID) AS Total
+FROM Track
+JOIN MediaType ON Track.MediaTypeId = MediaType.MediaTypeId
+GROUP BY MediaType.Name
+ORDER BY total DESC
+
+
+/* Query 2 */
+SELECT City,
+       SUM(Invoice.Total)
+FROM Customer
+JOIN Invoice ON CUSTOMER.CustomerId = Invoice.CustomerId
+GROUP BY Customer.City
+ORDER BY SUM(INVOICE.Total) DESC
+
+
+/* Query 3 */
+SELECT Artist.Name,
+       count(album.Artistid) "Number of Album"
+FROM Album
+JOIN Artist ON Album.ArtistId=Artist.ArtistId
+GROUP BY Artist.Name
+ORDER BY "Number of Album" DESC
+LIMIT 10;
+
+
+/* Query 4 */
+SELECT (Customer.FirstName || " " || Customer.LastName) AS CustomerName,
+       SUM (Invoice.total) AS total
+FROM Invoice
+INNER JOIN Customer ON Invoice.CustomerId = Customer.CustomerId
+GROUP BY CustomerName
+ORDER BY total DESC
+LIMIT 15;
+
